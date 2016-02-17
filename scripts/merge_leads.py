@@ -19,7 +19,7 @@ Priority (how to choose 'Destination lead'):
 - If both or neither have opportunities, prefer leads with desired_status specified below.
 """
 
-desired_status = 'open' # capitalization doesn't matter
+desired_status = 'closed' # capitalization doesn't matter
 
 api = CloseIO_API(args.api_key, development=args.development)
 has_more = True
