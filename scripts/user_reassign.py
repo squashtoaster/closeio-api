@@ -19,6 +19,7 @@ parser.add_argument('--development', '-d', action='store_true',
                     help='Use a development (testing) server rather than production.')
 parser.add_argument('--confirmed', '-c', action='store_true',
                     help='Without this flag, the script will do a dry run without actually updating any data.')
+parser.add_argument('--query', type=str, required=False, help='Search query.')
 parser.add_argument('--continue-on-error', '-s', action='store_true', help='Do not abort after first error')
 group = parser.add_argument_group()
 group.add_argument('--tasks', '-T', action='store_true', help='reassign only non complete tasks')
@@ -101,7 +102,8 @@ try:
             if not args.all_tasks:
                 payload['is_complete'] = False
 
-            resp = api.get('task', data=payload)
+            resp = api.get('lead', data={'_skip': offset, '_limit': limit, 'query': args.query})
+            tasks.extend([task['id'] for lead in resp['data'] for task in lead['task']])
 
             tasks = resp['data']
             for task in tasks:
