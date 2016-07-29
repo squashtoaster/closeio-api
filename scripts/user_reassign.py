@@ -8,7 +8,7 @@ from closeio_api import Client as CloseIO_API, APIError
 
 parser = argparse.ArgumentParser(description='Assigns tasks or opportunities from one user to another')
 group_from = parser.add_mutually_exclusive_group(required=True)
-group_from.add_argument('--from-user-id', '-f', type=str, help='')
+group_from.add_argument('--from-user-id', '-f', type=str, help='user id')
 group_from.add_argument('--from-user-email', type=str, help='')
 group_to = parser.add_mutually_exclusive_group(required=True)
 group_to.add_argument('--to-user-id', '-t', type=str, help='')
